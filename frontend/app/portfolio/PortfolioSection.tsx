@@ -31,7 +31,7 @@ const portfolioItems = [
 const PortfolioSection = () => {
   return (
     <section className="w-full px-4 py-12">
-      <div className="max-w-6xl mx-auto text-center">
+      <div className="container mx-auto text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[#5C4033] mb-2">
           Portfolio
         </h2>
@@ -42,7 +42,7 @@ const PortfolioSection = () => {
         </p>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {portfolioItems.map((item, idx) => (
             <div
               key={idx}
