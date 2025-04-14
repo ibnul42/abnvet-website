@@ -3,6 +3,7 @@ import Link from "next/link";
 import ContactSection from "./contact/ContactSection";
 import PortfolioSection from "./portfolio/PortfolioSection";
 import AboutMeSection from "./about/AboutMeSection";
+import GallerySection from "./gallery/GallerySection";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <HeroSection />
       <AboutMeSection />
       <ServicesSection />
+      <GallerySection />
       <PortfolioSection />
       <ContactSection />
     </div>
@@ -23,7 +25,7 @@ const HeroSection = () => {
       style={{ backgroundImage: "url(/assets/parachute-bg.png)" }}
     >
       {/* Overlay for lighter effect */}
-      <div className="absolute inset-0 bg-white/30 z-0" />
+      <div className="absolute inset-0 bg-white/40 z-0" />
 
       <div className="container mx-auto flex flex-col md:flex-row items-center gap-12 px-6 py-10 md:py-20 relative z-10">
         {/* Left Side Content */}
