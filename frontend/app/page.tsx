@@ -39,13 +39,13 @@ const HeroSection = () => {
           <div className="flex flex-wrap gap-4 justify-center md:justify-start mb-6">
             <Link
               href="#"
-              className="bg-[#5C4033] hover:bg-[#402c22] text-white px-6 py-2 rounded transition"
+              className="bg-[#5C4033] hover:bg-[#402c22] text-white px-6 py-2 rounded-md transition"
             >
               Download CV
             </Link>
             <Link
               href="#"
-              className="bg-[#657252] hover:bg-[#556241] px-6 py-2 rounded text-white hover:text-white transition"
+              className="bg-[#657252] hover:bg-[#556241] px-6 py-2 rounded-md text-white hover:text-white transition"
             >
               Portfolio
             </Link>

@@ -87,7 +87,7 @@ const GallerySection: React.FC = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-full border cursor-pointer transition ${
+              className={`px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-md border cursor-pointer transition ${
                 activeCategory === cat
                   ? "bg-[#5d3e28] text-white"
                   : "bg-white text-[#5d3e28] border-[#ccc] hover:bg-[#5d3e28]/70 hover:text-white"
@@ -103,7 +103,7 @@ const GallerySection: React.FC = () => {
           {filteredImages.map((img, index) => (
             <div
               key={index}
-              className="bg-white rounded shadow overflow-hidden"
+              className="bg-white rounded-md shadow overflow-hidden"
             >
               <Image
                 width={500}
@@ -124,7 +124,7 @@ const GallerySection: React.FC = () => {
 
         {/* View All Button */}
         <div className="mt-10 text-center">
-          <button className="px-6 py-2 bg-[#657252] hover:bg-[#556241] text-white rounded cursor-pointer">
+          <button className="px-6 py-2 bg-[#657252] hover:bg-[#556241] text-white rounded-md cursor-pointer">
             View All
           </button>
         </div>

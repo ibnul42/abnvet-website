@@ -77,7 +77,7 @@ const ContactSection = () => {
           ></textarea>
           <button
             type="submit"
-            className="w-full bg-[#657252] hover:bg-[#556241] text-white font-medium py-2 rounded cursor-pointer"
+            className="w-full bg-[#657252] hover:bg-[#556241] text-white font-medium py-2 rounded-md cursor-pointer"
           >
             Submit
           </button>
