@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import ContactSection from "./contact/ContactSection";
+import PortfolioSection from "./portfolio/PortfolioSection";
 
 export default function Home() {
   return (
     <div className="">
       <HeroSection />
+      <PortfolioSection />
       <ContactSection />
     </div>
   );
