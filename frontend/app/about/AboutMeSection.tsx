@@ -23,7 +23,7 @@ const AboutMeSection = () => {
           <div className="absolute top-0 md:top-2 left-0 md:left-2 w-full h-full border-2 border-[#657252] z-30"></div>
           <div className="absolute top-2 md:top-4 left-2 md:left-4 w-full h-full border-2 border-[#657252] z-20"></div>
           <div className="absolute top-4 md:top-6 left-4 md:left-6 w-full h-full border-2 border-[#657252] z-10"></div>
-          <div className="absolute top-7 -bottom-1.5 left-8 right-0 z-40 rounded overflow-hidden">
+          <div className="absolute top-7 bottom-0 md:-bottom-1.5 left-8 right-0 z-40 rounded overflow-hidden">
             <Image
               src="/temp/about-me.png"
               alt="About Me"
