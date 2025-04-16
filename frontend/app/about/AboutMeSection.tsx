@@ -1,11 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 import {
   FaFacebookSquare,
   FaInstagramSquare,
   FaTwitterSquare,
 } from "react-icons/fa";
 import { FaSquareYoutube } from "react-icons/fa6";
+
+interface AboutMeSectionProps {
+  backgroundImageUrl?: string;
+}
 
 const socialLinks = [
   { icon: FaFacebookSquare, link: "https://www.facebook.com" },
@@ -14,16 +19,34 @@ const socialLinks = [
   { icon: FaSquareYoutube, link: "https://www.youtube.com" },
 ];
 
-const AboutMeSection = () => {
+const AboutMeSection: React.FC<AboutMeSectionProps> = ({
+  backgroundImageUrl,
+}) => {
   return (
-    <section className="w-full px-4 py-12">
-      <div className="container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between md:items-start">
+    <section
+      className="w-full px-4 py-12 relative"
+      style={
+        backgroundImageUrl
+          ? {
+              backgroundImage: `url(${backgroundImageUrl})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }
+          : undefined
+      }
+    >
+      {/* Optional overlay if needed */}
+      {backgroundImageUrl && (
+        <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px] z-0" />
+      )}
+
+      <div className="relative container mx-auto flex flex-col md:flex-row gap-10 items-center justify-between md:items-start z-10">
         {/* Image with Frames */}
         <div className="relative w-[250px] h-[350px] md:w-[300px] md:h-[450px]">
-          <div className="absolute top-0 md:top-2 left-0 md:left-2 w-full h-full border-2 border-[#657252] z-30"></div>
-          <div className="absolute top-2 md:top-4 left-2 md:left-4 w-full h-full border-2 border-[#657252] z-20"></div>
-          <div className="absolute top-4 md:top-6 left-4 md:left-6 w-full h-full border-2 border-[#657252] z-10"></div>
-          <div className="absolute top-7 bottom-0 md:-bottom-1.5 left-8 right-0 z-40 rounded overflow-hidden">
+          <div className="absolute top-0 md:top-2 left-0 md:left-2 w-full h-full border-2 border-[#657252] z-30" />
+          <div className="absolute top-2 md:top-4 left-2 md:left-4 w-full h-full border-2 border-[#657252] z-20" />
+          <div className="absolute top-4 md:top-6 left-4 md:left-6 w-full h-full border-2 border-[#657252] z-10" />
+          <div className="absolute top-7 bottom-0 md:-bottom-1.5 left-7 -right-1 z-40 overflow-hidden">
             <Image
               src="/temp/about-me.png"
               alt="About Me"
@@ -34,7 +57,7 @@ const AboutMeSection = () => {
         </div>
 
         {/* Text Content */}
-        <div className="flex-1 max-w-6xl text-center md:text-left">
+        <div className="flex-1 max-w-6xl text-center md:text-left z-10">
           <h2 className="text-2xl md:text-3xl font-semibold text-[#5C4033] mb-4">
             About Me
           </h2>
