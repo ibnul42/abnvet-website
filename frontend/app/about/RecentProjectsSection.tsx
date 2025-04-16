@@ -42,7 +42,7 @@ const RecentProjectsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollIndex, setScrollIndex] = useState(0);
 
-  const scrollAmount = 1;
+  // const scrollAmount = 1;
 
   const handleScroll = (direction: "left" | "right") => {
     if (!containerRef.current) return;
