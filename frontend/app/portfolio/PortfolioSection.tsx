@@ -1,7 +1,12 @@
+import React from "react";
 import Image from "next/image";
 import { FaYoutube } from "react-icons/fa";
 
-const portfolioItems = [
+type PortfolioItem = { thumbnail: string; title: string; description: string };
+
+type PortfolioSectionProps = { showIntro?: boolean };
+
+const portfolioItems: PortfolioItem[] = [
   {
     thumbnail: "/temp/thumb1.png",
     title: "Portfolio Sizzle Reel",
@@ -28,20 +33,24 @@ const portfolioItems = [
   },
 ];
 
-const PortfolioSection = () => {
+const PortfolioSection: React.FC<PortfolioSectionProps> = ({
+  showIntro = false,
+}) => {
   return (
     <section className="w-full px-4 py-12">
       <div className="container mx-auto text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#5C4033] mb-2">
-          Portfolio
-        </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-10 text-sm md:text-base">
-          Explore examples of my work, from Communications and Media Technology
-          projects to personal content highlighting my storytelling,
-          videography, and video-editing expertise.
-        </p>
-
-        {/* Grid */}
+        {showIntro && (
+          <>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#5C4033] mb-2">
+              Portfolio
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto mb-10 text-sm md:text-base">
+              Explore examples of my work, from Communications and Media
+              Technology projects to personal content highlighting my
+              storytelling, videography, and video-editing expertise.
+            </p>
+          </>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {portfolioItems.map((item, idx) => (
             <div
@@ -68,8 +77,6 @@ const PortfolioSection = () => {
             </div>
           ))}
         </div>
-
-        {/* View All Button */}
         <button className="bg-[#657252] hover:bg-[#556241] text-white px-6 py-2 rounded-md text-sm cursor-pointer">
           View All
         </button>
