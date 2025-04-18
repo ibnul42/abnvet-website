@@ -8,6 +8,8 @@ interface GalleryItem {
   category: string;
 }
 
+type GallerySectionProps = { showIntro?: boolean };
+
 const categories: string[] = [
   "All",
   "Photography",
@@ -62,7 +64,9 @@ const images: GalleryItem[] = [
   },
 ];
 
-const GallerySection: React.FC = () => {
+const GallerySection: React.FC<GallerySectionProps> = ({
+  showIntro= false,
+}) => {
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
   const filteredImages =
@@ -73,13 +77,17 @@ const GallerySection: React.FC = () => {
   return (
     <section className="bg-white py-12 px-4">
       <div className="container mx-auto">
-        <h2 className="text-2xl md:text-3xl font-semibold text-center text-[#5d3e28] mb-2">
+        {showIntro &&(
+          <>
+          <h2 className="text-2xl md:text-3xl font-semibold text-center text-[#5d3e28] mb-2">
           Gallery
         </h2>
         <p className="text-center text-gray-700 mb-6 max-w-2xl mx-auto">
           This gallery highlights images and moments captured during my
           adventures, projects, and family explorations
         </p>
+          </>
+        )}
 
         {/* Category Filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">

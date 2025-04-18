@@ -68,7 +68,7 @@ const RecentProjectsSection = () => {
   };
 
   return (
-    <section className="w-full px-4 py-12 bg-white text-[#5C4033]">
+    <section className="w-full px-4 py-12 bg-white text-[#5C4033] relative">
       <div className="container mx-auto">
         <h2 className="text-2xl md:text-3xl font-semibold text-center mb-10">
           My Recent Project
@@ -87,7 +87,7 @@ const RecentProjectsSection = () => {
                 className="bg-[rgba(92,64,51,0.1)] border border-[#5C4033]min-w-full sm:min-w-1/2 lg:min-w-1/3 max-w-[280px] snap-start flex-shrink-0 rounded-lg shadow-md overflow-hidden flex flex-col"
               >
                 <div className="relative w-full h-48 overflow-hidden">
-                  <Image src={project.image} alt={project.title} fill />
+                  <Image src={project.image} alt={project.title} fill className="object-cover" />
                   <FaYoutube className="absolute top-2 left-2 text-red-600 text-3xl rounded-full p-1 shadow-md" />
                 </div>
                 <div className="p-4 flex-1">
@@ -99,28 +99,6 @@ const RecentProjectsSection = () => {
               </div>
             ))}
           </div>
-
-          {/* Navigation Arrows */}
-          <button
-            onClick={() => handleScroll("left")}
-            className={classnames(
-              "absolute top-1/2 -left-2 transform -translate-y-1/2 flex bg-[#5C4033]/60 text-white w-10 h-10 rounded-full shadow items-center justify-center hover:bg-[#4e362b] cursor-pointer",
-              scrollIndex === 0 && "opacity-50 pointer-events-none"
-            )}
-          >
-            &lt;
-          </button>
-
-          <button
-            onClick={() => handleScroll("right")}
-            className={classnames(
-              "absolute top-1/2 -right-2 transform -translate-y-1/2 flex bg-[#5C4033]/60 text-white w-10 h-10 rounded-full shadow items-center justify-center hover:bg-[#4e362b] cursor-pointer",
-              scrollIndex >= projects.length - 1 &&
-                "opacity-50 pointer-events-none"
-            )}
-          >
-            &gt;
-          </button>
         </div>
 
         {/* Explore All Button */}
@@ -130,6 +108,26 @@ const RecentProjectsSection = () => {
           </button>
         </div>
       </div>
+      {/* Navigation Arrows */}
+      <button
+        onClick={() => handleScroll("left")}
+        className={classnames(
+          "absolute top-1/2 left-2 transform -translate-y-1/2 flex bg-[#5C4033]/60 text-white w-10 h-10 rounded-full shadow items-center justify-center hover:bg-[#4e362b] cursor-pointer",
+          scrollIndex === 0 && "opacity-50 pointer-events-none"
+        )}
+      >
+        &lt;
+      </button>
+
+      <button
+        onClick={() => handleScroll("right")}
+        className={classnames(
+          "absolute top-1/2 right-2 transform -translate-y-1/2 flex bg-[#5C4033]/60 text-white w-10 h-10 rounded-full shadow items-center justify-center hover:bg-[#4e362b] cursor-pointer",
+          scrollIndex >= projects.length - 1 && "opacity-50 pointer-events-none"
+        )}
+      >
+        &gt;
+      </button>
     </section>
   );
 };
