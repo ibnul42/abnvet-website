@@ -94,7 +94,74 @@ const loginUser = async (req, res) => {
   }
 };
 
+const getProfile = async (req, res) => {
+  try {
+    console.log(req.user.id);
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) {
+      return responseHandler(res, false, "User not found", null, 404);
+    }
+
+    return responseHandler(res, true, "User profile fetched", user, 200);
+  } catch (error) {
+    console.error("Get Profile Error:", error);
+    return responseHandler(res, false, "Something went wrong", null, 500);
+  }
+};
+
+const updateProfile = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    // Validate input
+    if (!name || !email || !password) {
+      return responseHandler(
+        res,
+        false,
+        "Name, email, and password are required",
+        null,
+        400
+      );
+    }
+
+    // Find user by ID
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return responseHandler(res, false, "User not found", null, 404);
+    }
+
+    // Compare input password with stored hash
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return responseHandler(res, false, "Incorrect password", null, 401);
+    }
+
+    // ✅ Use findByIdAndUpdate instead of save()
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,
+      { name, email },
+      { new: true } // returns the updated document
+    );
+
+    return responseHandler(
+      res,
+      true,
+      "Profile updated successfully",
+      {
+        name: updatedUser.name,
+        email: updatedUser.email,
+      },
+      200
+    );
+  } catch (error) {
+    console.error("Update Error:", error);
+    return responseHandler(res, false, "Something went wrong", null, 500);
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  getProfile,
+  updateProfile,
 };
