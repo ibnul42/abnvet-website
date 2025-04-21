@@ -3,7 +3,9 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
+const path = require("path");
 const userRoutes = require("./routes/userRoutes");
+const heroRoutes = require("./routes/heroRoutes");
 
 dotenv.config();
 connectDB();
@@ -22,6 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api/users", userRoutes);
+app.use("/api/hero", heroRoutes);
+app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
