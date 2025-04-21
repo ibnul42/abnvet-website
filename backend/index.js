@@ -17,9 +17,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
-app.use("/", (req, res) => {
-  res.status(200).json({ message: "Welcome!" });
-});
 app.use("/api/users", userRoutes);
 app.use("/api/hero", heroRoutes);
 app.use("/assets", express.static(path.join(__dirname, "assets")));
