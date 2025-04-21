@@ -24,9 +24,9 @@ app.use("/api/hero", heroRoutes);
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
 
 // Export for Vercel
 module.exports = app;
