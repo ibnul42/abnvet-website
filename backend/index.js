@@ -13,21 +13,19 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(
-  cors({
-    origin: "http://localhost:3000", // or your frontend origin
-    credentials: true, // ✅ very important to allow cookies
-  })
-);
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
+app.use("/", (req, res) => {
+  res.status(200).json({ message: "Welcome!" });
+});
 app.use("/api/users", userRoutes);
 app.use("/api/hero", heroRoutes);
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
