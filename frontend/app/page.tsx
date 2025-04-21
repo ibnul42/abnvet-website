@@ -22,11 +22,35 @@ export default function Home() {
   );
 }
 
-const HeroSection = () => {
+async function getHero() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/hero`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return null;
+  }
+
+  const data = await res.json();
+  return data?.data;
+}
+
+interface Hero {
+  _id: string;
+  title: string;
+  positions: string;
+  content: string;
+  background: string;
+  profile1: string;
+  profile2: string;
+}
+
+async function HeroSection() {
+  const hero: Hero = await getHero();
   return (
     <section
       className="w-full md:max-h-[700px] flex items-center justify-center bg-cover bg-bottom relative overflow-hidden"
-      style={{ backgroundImage: "url(/assets/parachute-bg.png)" }}
+      style={{ backgroundImage: `url(${hero?.background})` }}
     >
       {/* Overlay for lighter effect */}
       <div className="absolute inset-0 bg-white/40 z-0" />
@@ -35,11 +59,9 @@ const HeroSection = () => {
         {/* Left Side Content */}
         <div className="flex-1 text-center md:text-left">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Gary W. Rapoza
+            {hero?.title}
           </h1>
-          <p className="text-sm text-gray-600 mb-5">
-            Video Content Creator | Digital Strategist | Storyteller
-          </p>
+          <p className="text-sm text-gray-600 mb-5">{hero?.positions}</p>
           <div className="flex flex-wrap gap-4 justify-center md:justify-start mb-6">
             <Link
               href="#"
@@ -61,13 +83,7 @@ const HeroSection = () => {
             Explore. Inspire. Lead
           </h3>
           <p className="text-gray-700 max-w-xl leading-relaxed text-sm">
-            I’m a retired U.S. Paratrooper with 23 years of service, and now a
-            passionate content creator. After years of military service, I’ve
-            dedicated myself to telling stories that connect people with the
-            outdoors. I’m driven by a passion for exploration, conservation, and
-            family-oriented adventures. Through CoyoteSix, I’m not just
-            documenting my journey but sharing lessons about the land, nature,
-            and raising my young sons with the same love for the outdoors.
+            {hero?.content}
           </p>
         </div>
 
@@ -75,7 +91,7 @@ const HeroSection = () => {
         <div className="flex-1 flex justify-center">
           <div className="relative md:absolute md:top-10 md:right-8 lg:right-20 w-60 h-80 rounded-xl overflow-hidden border-1 border-[#895000] bg-red-200">
             <Image
-              src="/assets/creator1.png"
+              src={hero?.profile1}
               alt="Content Creator"
               fill
               className="object-cover"
@@ -83,7 +99,7 @@ const HeroSection = () => {
           </div>
           <div className="absolute top-36 right-28 lg:right-40 w-56 h-60 rounded-xl overflow-hidden border-1 border-[#895000] hidden sm:block">
             <Image
-              src="/assets/creator2.png"
+              src={hero?.profile2}
               alt="Content Creator"
               fill
               className="object-cover object-top"
@@ -93,4 +109,4 @@ const HeroSection = () => {
       </div>
     </section>
   );
-};
+}
