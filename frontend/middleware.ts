@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
   try {
-    const verifyRes = await fetch("http://localhost:5000/api/users/profile", {
+    const verifyRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.next();
     }
     if (isLoginPage) {
-      return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+      return NextResponse.redirect(new URL("/admin/profile", request.url));
     }
   } catch (error) {
     console.log(error);

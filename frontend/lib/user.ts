@@ -8,7 +8,7 @@ export async function getUser() {
     return null;
   }
 
-  const res = await fetch("http://localhost:5000/api/users/profile", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/users/profile`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
